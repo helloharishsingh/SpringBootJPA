@@ -1,24 +1,25 @@
 package com.springboot.app.SpringBootApp.model;
 
 import java.util.Date;
-import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
-@Entity
-@Table(name = "Employee")
+
+@Entity(name = "Employee")
 public class EmployeeModel {
 
 	@Id
 	@GeneratedValue
-	private Long id;
-	private String name;
+	private Integer id;
+	private String firstName;
+	private String middleName;
+	private String lastName;
+	private String department;
+	private double salary;
 	private String loginName;
 	private String loginPassword;
 	private String mobileNumber;
@@ -26,44 +27,78 @@ public class EmployeeModel {
 	private String role;
 	@JsonFormat(pattern = "dd-mm-yyyy")
 	private Date createdOn;
-	private Long createdBy;
+	private Integer createdBy;
 	@JsonFormat(pattern = "dd-mm-yyyy")
 	private Date updatedOn;
-	private Long updatedBy;
+	private Integer updatedBy;
 	private String status;
 	
-	public EmployeeModel(Long id, String name, String mobileNumber, String emailId, String role, 
-			Long createdBy,  Long updatedBy, String status) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.mobileNumber = mobileNumber;
-		this.emailId = emailId;
-		this.role = role;
-		this.createdOn = new Date();
-		this.createdBy = new Long(1);
-		this.updatedOn = new Date();
-		this.updatedBy = new Long(1);
-		this.status = status;
-	}
+	
+	
+	
 	public EmployeeModel() {
 		this.createdOn = new Date();
-		this.createdBy = new Long(1);
+		this.createdBy = 1;
 		this.updatedOn = new Date();
-		this.updatedBy = new Long(1);
+		this.updatedBy = 1;
 		
 	}
-	public Long getId() {
+	
+	@Override
+	public String toString() {
+		return "EmployeeModel [id=" + id + ", firstName=" + firstName + ", middleName=" + middleName + ", lastName="
+				+ lastName + ", department=" + department + ", salary=" + salary + ", loginName=" + loginName
+				+ ", loginPassword=" + loginPassword + ", mobileNumber=" + mobileNumber + ", emailId=" + emailId
+				+ ", role=" + role + ", createdOn=" + createdOn + ", createdBy=" + createdBy + ", updatedOn="
+				+ updatedOn + ", updatedBy=" + updatedBy + ", status=" + status + "]";
+	}
+	public Integer getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public String getFirstName() {
+		return firstName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getMiddleName() {
+		return middleName;
+	}
+	public void setMiddleName(String middleName) {
+		this.middleName = middleName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	public String getDepartment() {
+		return department;
+	}
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+	public double getSalary() {
+		return salary;
+	}
+	public void setSalary(double salary) {
+		this.salary = salary;
+	}
+	public String getLoginName() {
+		return loginName;
+	}
+	public void setLoginName(String loginName) {
+		this.loginName = loginName;
+	}
+	public String getLoginPassword() {
+		return loginPassword;
+	}
+	public void setLoginPassword(String loginPassword) {
+		this.loginPassword = loginPassword;
 	}
 	public String getMobileNumber() {
 		return mobileNumber;
@@ -89,10 +124,10 @@ public class EmployeeModel {
 	public void setCreatedOn(Date createdOn) {
 		this.createdOn = createdOn;
 	}
-	public Long getCreatedBy() {
+	public Integer getCreatedBy() {
 		return createdBy;
 	}
-	public void setCreatedBy(Long createdBy) {
+	public void setCreatedBy(Integer createdBy) {
 		this.createdBy = createdBy;
 	}
 	public Date getUpdatedOn() {
@@ -101,48 +136,18 @@ public class EmployeeModel {
 	public void setUpdatedOn(Date updatedOn) {
 		this.updatedOn = updatedOn;
 	}
-	public Long getUpdatedBy() {
+	public Integer getUpdatedBy() {
 		return updatedBy;
 	}
-	public void setUpdatedBy(Long updatedBy) {
+	public void setUpdatedBy(Integer updatedBy) {
 		this.updatedBy = updatedBy;
 	}
 	public String getStatus() {
 		return status;
 	}
-	public String getLoginPassword() {
-		return loginPassword;
-	}
-	public void setLoginPassword(String loginPassword) {
-		this.loginPassword = loginPassword;
-	}
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	@Override
-	public int hashCode() {
-		return Objects.hash(createdBy, createdOn, emailId, id, mobileNumber, name, role, status, updatedBy, updatedOn);
-	}
-	public String getLoginName() {
-		return loginName;
-	}
-	public void setLoginName(String loginName) {
-		this.loginName = loginName;
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		EmployeeModel other = (EmployeeModel) obj;
-		return Objects.equals(createdBy, other.createdBy) && Objects.equals(createdOn, other.createdOn)
-				&& Objects.equals(emailId, other.emailId) && Objects.equals(id, other.id)
-				&& Objects.equals(mobileNumber, other.mobileNumber) && Objects.equals(name, other.name)
-				&& Objects.equals(role, other.role) && Objects.equals(status, other.status)
-				&& Objects.equals(updatedBy, other.updatedBy) && Objects.equals(updatedOn, other.updatedOn);
-	}
+	
 	
 }
